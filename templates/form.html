@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RicePredict AI</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <div class="dashboard-container">
+      <div class="sidebar">
+        <div class="top-sidebar">
+          <div class="brand">
+            <span class="icon">🌾</span>
+            <div>
+              <h1>RicePredict AI</h1>
+              <p>Sumatera Agriculture System</p>
+            </div>
+          </div>
+
+          <div class="about-section">
+            <h3>Tentang Sistem</h3>
+            <p>
+              RicePredict AI merupakan sistem prediksi produksi padi berbasis
+              <b>Machine Learning</b> yang menggunakan algoritma
+              <b>Random Forest Regressor</b> untuk membantu estimasi potensi
+              hasil panen berdasarkan kondisi iklim dan luas lahan.
+            </p>
+          </div>
+
+          <div class="about-section">
+            <h3>Sumber & Karakteristik Data</h3>
+            <p>
+              Model dilatih menggunakan data historis produksi padi di beberapa
+              provinsi Pulau Sumatera. Variabel yang digunakan mencakup luas
+              panen serta faktor iklim seperti curah hujan, suhu, dan
+              kelembapan.
+            </p>
+          </div>
+
+          <div class="model-stats">
+            <h3>Evaluasi Model</h3>
+
+            <div class="stat-info">
+              <span>R² Score</span>
+              <span>0.93</span>
+            </div>
+            <div class="stat-bar">
+              <div class="stat-fill" style="width: 93%"></div>
+            </div>
+
+            <div class="stat-info" style="margin-top: 12px">
+              <span>RMSE</span>
+              <span>245.677</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-footer">
+          <p>
+            Project Machine Learning<br />
+            Teknik Informatika – Politeknik Caltex Riau
+          </p>
+        </div>
+      </div>
+
+      <div class="main-content">
+        <div class="form-header">
+          <h2>Prediksi Produksi Padi</h2>
+          <p>
+            Masukkan data lahan dan iklim untuk memperoleh estimasi produksi padi
+          </p>
+        </div>
+
+        <form method="POST">
+          <div class="form-group">
+            <label>Provinsi Wilayah</label>
+            <select name="provinsi" required>
+              <option value="">-- Pilih Provinsi --</option>
+              <option>Aceh</option>
+              <option>Sumatera Utara</option>
+              <option>Sumatera Barat</option>
+              <option>Riau</option>
+              <option>Jambi</option>
+              <option>Sumatera Selatan</option>
+              <option>Lampung</option>
+              <option>Bengkulu</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Luas Panen (Hektar)</label>
+            <input type="number" step="any" name="luas_panen" required />
+          </div>
+
+          <div class="input-grid">
+            <div class="form-group">
+              <label>Curah Hujan (mm)</label>
+              <input type="number" step="any" name="curah_hujan" required />
+            </div>
+            <div class="form-group">
+              <label>Suhu Rata-rata (°C)</label>
+              <input type="number" step="any" name="suhu" required />
+            </div>
+            <div class="form-group" style="grid-column: span 2">
+              <label>Kelembapan Udara (%)</label>
+              <input type="number" step="any" name="kelembapan" required />
+            </div>
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn-submit">Prediksi</button>
+            <button type="reset" class="btn-reset">Reset</button>
+          </div>
+        </form>
+
+        {% if hasil %}
+        <div class="result-area">
+          <div class="result-label">Estimasi Produksi Padi</div>
+          <div class="result-value">
+            {{ "{:,.2f}".format(hasil).replace(',', 'X').replace('.',
+            ',').replace('X', '.') }}
+            <span>Ton</span>
+          </div>
+          <p class="result-meta">
+            Hasil merupakan estimasi berdasarkan pola data historis
+          </p>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>
