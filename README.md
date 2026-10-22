@@ -1,6 +1,6 @@
 <div align="center">
 
-# RicePredictAI 🌾
+# RicePredictAI 
 
 **Rice Production Prediction Using Machine Learning**
 
@@ -59,9 +59,3 @@ python app.py
 ```
 
 Open **http://127.0.0.1:5000** in your browser.
-
-## Author
-
-**Muhammad Ilham**
-
-[GitHub](https://github.com/devbyilham)
