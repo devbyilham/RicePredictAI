@@ -10,6 +10,8 @@ A web application for predicting rice production using agricultural and environm
 ![Flask](https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-F7931E?style=flat&logo=scikitlearn&logoColor=white)
 
+[Live Demo](https://rice-predict-ai.vercel.app/)  
+
 </div>
 
 ## Overview
